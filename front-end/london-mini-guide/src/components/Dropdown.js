@@ -6,18 +6,22 @@ import {
   DropdownItem,
 } from "reactstrap";
 
-const DropdownCities = (props) => {
+const DropdownCities = ({setCity}) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const toggle = () => setDropdownOpen((prevState) => !prevState);
+  const toggle = (e) => {
+    setDropdownOpen((prevState) => !prevState)};
 
   return (
-    <Dropdown isOpen={dropdownOpen} toggle={toggle}>
+    <Dropdown
+      isOpen={dropdownOpen}
+      toggle={toggle}
+    >
       <DropdownToggle caret>Select a city</DropdownToggle>
-      <DropdownMenu>
-        <DropdownItem>Harrow</DropdownItem>
-        <DropdownItem>Stratford</DropdownItem>
-        <DropdownItem>Heathrow</DropdownItem>
+      <DropdownMenu onClick={(e)=>setCity(e.target.value)}>
+        <DropdownItem value="harrow">Harrow</DropdownItem>
+        <DropdownItem value="stratford">Stratford</DropdownItem>
+        <DropdownItem value="heathrow">Heathrow</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   );
